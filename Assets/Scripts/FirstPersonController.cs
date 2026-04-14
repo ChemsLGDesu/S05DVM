@@ -7,7 +7,7 @@ public class FirstPersonController : MonoBehaviour
     public InputSystem_Actions inputs;
     private CharacterController controller;
     public CinemachineCamera characterCamera;
-
+    public Animator animator;
 
 
     public float moveSpeed = 5f;
@@ -79,15 +79,18 @@ public class FirstPersonController : MonoBehaviour
 
         Vector3 moveDir = (cameraForwardDir * moveInput.y + transform.right * moveInput.x) * moveSpeed;
 
+        print(controller.velocity);
+        float magnitud = Mathf.Abs(controller.velocity.magnitude);
+        animator.SetFloat("Speed", magnitud);
 
         verticalVelocity += Physics.gravity.y * Time.deltaTime;
 
         if (controller.isGrounded && verticalVelocity < 0)
             verticalVelocity = -2f;
 
-
+        
         moveDir.y = verticalVelocity;
-
+        animator.SetBool("Grounded", controller.isGrounded);
 
         if (IsDashing)
         {
@@ -105,6 +108,8 @@ public class FirstPersonController : MonoBehaviour
     private void OnJump(InputAction.CallbackContext context)
     {
         if (!controller.isGrounded) return;
+
+        animator.SetTrigger("Jump");
 
         verticalVelocity = jumpForce;
     }
