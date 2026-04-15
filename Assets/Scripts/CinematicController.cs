@@ -65,12 +65,7 @@ public class CinematicController : MonoBehaviour
     public void FinishCinematic()
     {
         isCameraFinished = true;
+        if (playerMovementScript != null) playerMovementScript.enabled = true;
 
-        // Habilita el movimiento del Player
-        if (playerMovementScript != null)
-        {
-            playerMovementScript.enabled = true;
-            Debug.Log("Cinemática terminada, control entregado al Player");
-        }
     }
 }
