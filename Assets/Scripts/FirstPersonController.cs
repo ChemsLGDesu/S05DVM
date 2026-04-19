@@ -44,9 +44,6 @@ public class FirstPersonController : MonoBehaviour
         inputs.Player.Jump.performed += OnJump;
 
         inputs.Player.Sprint.performed += OnDash;
-
-
-
     }
     void Start()
     {
@@ -54,7 +51,6 @@ public class FirstPersonController : MonoBehaviour
     }
     void Update()
     {
-
         OnMove();
         //OnSimpleMove();
     }
