@@ -7,8 +7,6 @@ public class PlayerController : MonoBehaviour
     public InputSystem_Actions inputs;
     private CharacterController controller;
 
-
-
     public float moveSpeed = 5f;
     public float rotationSpeed = 200f;
     public float verticalVelocity = 0;
@@ -21,13 +19,7 @@ public class PlayerController : MonoBehaviour
     public float dashDuration = 0.2f;
     private float dashTimer;
 
-
-
-
     [SerializeField]private Vector2 moveInput;
-
-
-
 
     private void Awake()
     {
@@ -57,7 +49,6 @@ public class PlayerController : MonoBehaviour
     {
 
          OnMove();
-        //OnSimpleMove();
     }
 
     public void OnMove()
@@ -95,12 +86,6 @@ public class PlayerController : MonoBehaviour
         if (!controller.isGrounded) return;
 
         verticalVelocity = jumpForce;
-    }
-    public void OnSimpleMove()
-    {
-        transform.Rotate(Vector3.up * moveInput.x * rotationSpeed * Time.deltaTime);
-        Vector3 moveDir = transform.forward * moveSpeed * moveInput.y ;
-        controller.SimpleMove(moveDir);
     }
     private void OnControllerColliderHit(ControllerColliderHit hit)
     {
